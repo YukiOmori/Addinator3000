@@ -3,11 +3,11 @@ const add = require('./adder.js');
 class ViewManager  {
   
   connectEventHandlers() {
-  	//wire up event handler for form submit
-  	document.getElementById('form-numbers')
-  	  .addEventListener(
-  	  	  'submit',
-  	  	  this.onSubmit);
+    //wire up event handler for form submit
+    document.getElementById('form-numbers')
+      .addEventListener(
+          'submit',
+          this.onSubmit.bind(this));
   }
 
   onSubmit(event) {
@@ -26,8 +26,11 @@ class ViewManager  {
     //add the numbers
     const sum = add(num1, num2);
 
-    //output
-    alsert(sum);
+    this.renderSum(sum);
+  }
+
+  renderSum(sum) {
+    document.querySelector('.sum').textContent = sum;
   }
 
 }
